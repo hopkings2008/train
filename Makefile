@@ -1,12 +1,14 @@
-.PHONY: all clean
+.PHONY: all clean bin
+
+TEST_TARGET="test"
 
 GOFLAGS=-gcflags "-N -l"
 
 all:
-	#export CGO_ENABLED=0 && go build $(GOFLAGS) -o gts
+	go test -check.vv
 
 bin:
-	export CGO_ENABLED=0 && go test -c $(GOFLAGS)
+	export CGO_ENABLED=0 && go test -c $(GOFLAGS) -o $(TEST_TARGET)
 
 clean:
-	-@rm -f gts
+	-@rm -f $(TEST_TARGET)
